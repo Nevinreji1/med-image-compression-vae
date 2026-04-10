@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroVAE | Medical Image Compression</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-mesh"></div>
+    
+    <main class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>NeuroVAE</h1>
+            </div>
+            <p>Generative Deep Learning Compression Engine</p>
+        </header>
+
+        <section class="upload-section" id="upload-zone">
+            <div class="upload-content">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#00f2fe" />
+                            <stop offset="100%" stop-color="#4facfe" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <h2>Upload Medical Scan</h2>
+                <p>Drag and drop a PNG or JPEG file here, or click to browse.</p>
+                <input type="file" id="file-input" accept="image/png, image/jpeg" hidden>
+            </div>
+            <button class="upload-btn" id="browse-btn">Browse Files</button>
+        </section>
+
+        <section class="processing-section hidden" id="processing-zone">
+            <div class="scanner"></div>
+            <p class="processing-text">Encoding Latent Vectors...</p>
+        </section>
+
+        <section class="results-section hidden" id="results-zone">
+            <div class="comparison-grid">
+                <div class="image-card">
+                    <h3>Original Scan</h3>
+                    <img id="original-img" src="" alt="Original Image">
+                    <div class="metric-pill">Size: <span id="original-size">-</span></div>
+                </div>
+                
+                <div class="latent-card">
+                    <h5>Latent Bottleneck</h5>
+                    <div class="latent-container">
+                        <img id="latent-img" src="" alt="Latent Space">
+                    </div>
+                    <svg class="latent-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+                
+                <div class="image-card glow-card">
+                    <h3>VAE Compressed</h3>
+                    <img id="reconstructed-img" src="" alt="Reconstructed Image">
+                    <div class="metric-pill success">Size: <span id="compressed-size">-</span></div>
+                </div>
+            </div>
+
+            <div class="metrics-dashboard">
+                <div class="metric-box">
+                    <h4>Compression Ratio</h4>
+                    <div class="metric-value"><span id="comp-ratio">0</span>x</div>
+                </div>
+                <div class="metric-box">
+                    <h4>Reconstruction Quality (PSNR)</h4>
+                    <div class="metric-value"><span id="psnr-val">0</span> dB</div>
+                </div>
+            </div>
+            
+            <button class="reset-btn" id="reset-btn">Compress Another Scan</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
